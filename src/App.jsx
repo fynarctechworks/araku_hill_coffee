@@ -122,7 +122,7 @@ function App() {
       {currentPage === 'cart' && <CartPage onNavigate={handleNavigate} cart={cart} updateQuantity={updateQuantity} removeItem={removeItem} />}
       {currentPage === 'wishlist' && <WishlistPage onNavigate={handleNavigate} wishlist={wishlist} removeFromWishlist={removeFromWishlist} addToCart={addToCart} />}
       {currentPage === 'profile' && <ProfilePage onNavigate={handleNavigate} />}
-      {currentPage === 'checkout' && <CheckoutPage />}
+      {currentPage === 'checkout' && <CheckoutPage cart={cart} />}
       {currentPage === 'sustainability' && (
         <main className="min-h-screen flex items-center justify-center">
           <div className="text-center">

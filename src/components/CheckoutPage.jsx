@@ -1,4 +1,9 @@
-function CheckoutPage() {
+function CheckoutPage({ cart = [] }) {
+  // Calculate totals
+  const subtotal = cart.reduce((total, item) => total + (parseFloat(item.price) * item.quantity), 0);
+  const tax = subtotal * 0.05; // 5% GST
+  const total = subtotal + tax;
+
   return (
     <main className="flex-1 flex justify-center py-10 px-4 md:px-10 lg:px-40">
       <div className="layout-content-container flex flex-col lg:flex-row gap-10 max-w-[1200px] w-full">
@@ -116,32 +121,25 @@ function CheckoutPage() {
             
             {/* Product List */}
             <div className="space-y-4 mb-6">
-              <div className="flex gap-4">
-                <div className="h-20 w-20 bg-background-light dark:bg-[#1b140d] rounded-lg overflow-hidden shrink-0 border border-[#f3ede7] dark:border-[#3d2f23]">
-                  <img className="w-full h-full object-cover" alt="Araku Grand Reserve Coffee beans bag" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuhWbZcPw82pG2hRgdGSNPkwZ1De1sX6rrfos2eaw5Ewndp4Uq8TL56T9XqLDDwGFIpc-hLiBnnOnsNCXjMzoVuF93JfL28mMIE06O4SG2OkHu48AWLM9RrhpFQe01fnpisH_5SZvmpqmP40VOHc9HwC05yKnQoVReOUtpzf7_O0nQJwQnCtZ4Yd-s2P0FYundIJlQmH7usk_o7K-tOHLzMm6lFreE8rbK7rHi1dWS1cWVUQ6gYqujLieQGZix-xo79ITQ1bFQYuo"/>
-                </div>
-                <div className="flex-1">
-                  <p className="font-bold text-sm">Grand Reserve</p>
-                  <p className="text-xs text-[#9a734c] mb-1">Whole Bean / 250g</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs">Qty: 1</span>
-                    <span className="font-bold text-sm">₹850.00</span>
+              {cart.length === 0 ? (
+                <p className="text-center text-[#9a734c] py-8">No items in cart</p>
+              ) : (
+                cart.map((item, index) => (
+                  <div key={index} className="flex gap-4">
+                    <div className="h-20 w-20 bg-background-light dark:bg-[#1b140d] rounded-lg overflow-hidden shrink-0 border border-[#f3ede7] dark:border-[#3d2f23]">
+                      <img className="w-full h-full object-cover" alt={item.title} src={item.image}/>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-bold text-sm">{item.title}</p>
+                      <p className="text-xs text-[#9a734c] mb-1">{item.subtitle}</p>
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs">Qty: {item.quantity}</span>
+                        <span className="font-bold text-sm">₹{(parseFloat(item.price) * item.quantity).toFixed(2)}</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="h-20 w-20 bg-background-light dark:bg-[#1b140d] rounded-lg overflow-hidden shrink-0 border border-[#f3ede7] dark:border-[#3d2f23]">
-                  <img className="w-full h-full object-cover" alt="Micro Climate coffee package" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG78MDEx3btudOEoY3PYozYS99pcR2qiq5LTq-ID49x2n7bTwb9VLCt4vwUiO8HccpwdNQlvuxz6RO9HmKFcqeAjToPyM5cW9Y1IEadguLQ37LIo34NsG7kcjkQNiJd332MXZurW5Of6jCFuzqPJIsViDyuKKua8sDRzpEaZisTUZsOU0r1acmbltvBTUZm1-uQHnCJw62BVfDF1bQu0mgKURKSGSQyM_vd4WvRChVOIv4payZmAFRR_wPH0N5GfevL_ZOouGRnh4"/>
-                </div>
-                <div className="flex-1">
-                  <p className="font-bold text-sm">Micro Climate</p>
-                  <p className="text-xs text-[#9a734c] mb-1">French Press / 250g</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs">Qty: 2</span>
-                    <span className="font-bold text-sm">₹1,400.00</span>
-                  </div>
-                </div>
-              </div>
+                ))
+              )}
             </div>
 
             {/* Discount Code */}
@@ -154,22 +152,22 @@ function CheckoutPage() {
             <div className="space-y-3 border-t border-b border-[#f3ede7] dark:border-[#3d2f23] py-4 mb-6">
               <div className="flex justify-between text-sm">
                 <span className="text-[#9a734c]">Subtotal</span>
-                <span>₹2,250.00</span>
+                <span>₹{subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-[#9a734c]">Shipping</span>
                 <span className="text-primary font-medium">Calculated next step</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-[#9a734c]">Taxes (GST)</span>
-                <span>₹112.50</span>
+                <span className="text-[#9a734c]">Taxes (GST 5%)</span>
+                <span>₹{tax.toFixed(2)}</span>
               </div>
             </div>
 
             <div className="flex justify-between items-center mb-8">
               <span className="text-lg font-bold">Total</span>
               <div className="text-right">
-                <p className="text-2xl font-bold text-primary">₹2,362.50</p>
+                <p className="text-2xl font-bold text-primary">₹{total.toFixed(2)}</p>
                 <p className="text-[10px] text-[#9a734c]">Prices inclusive of all taxes</p>
               </div>
             </div>
