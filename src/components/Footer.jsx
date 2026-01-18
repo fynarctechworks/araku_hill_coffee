@@ -36,16 +36,16 @@ function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <h3 className="font-bold text-sm sm:text-base mb-4 sm:mb-6 text-[#1b140d]">Experience</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-[#6b5d52]">
-              <li className="flex items-start gap-2">
-                <span className="material-symbols-outlined text-primary text-sm mt-0.5">location_on</span>
+              <li className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-primary text-base shrink-0 bg-white p-2 rounded-lg">location_on</span>
                 <span>Vishakapatnam, Hyderabad</span>
               </li>
-              <li className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary text-sm">mail</span>
+              <li className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-primary text-base shrink-0 bg-white p-2 rounded-lg">mail</span>
                 <span>arakuhillcoffee@gmail.com</span>
               </li>
-              <li className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary text-sm">call</span>
+              <li className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-primary text-base shrink-0 bg-white p-2 rounded-lg">call</span>
                 <span>+91 9963940369</span>
               </li>
             </ul>
