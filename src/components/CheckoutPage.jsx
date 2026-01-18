@@ -22,10 +22,10 @@ function CheckoutPage({ cart = [] }) {
 
           {/* Customer Details Section */}
           <section className="bg-white dark:bg-[#2c2116] rounded-xl p-6 shadow-sm border border-[#f3ede7] dark:border-[#3d2f23]">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-[#1b140d] dark:text-[#fcfaf8] text-[22px] font-bold leading-tight">Customer Details</h2>
-              <a className="text-primary text-sm font-medium" href="#">Already have an account? Login</a>
-            </div>
+            <h2 className="text-[#1b140d] dark:text-[#fcfaf8] text-[22px] font-bold leading-tight mb-2">Customer Details</h2>
+            <p className="text-sm text-[#9a734c] mb-4">
+              Already have an account? <a className="text-primary font-medium hover:underline" href="#">Login</a>
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <label className="flex flex-col flex-1">
                 <p className="text-[#1b140d] dark:text-[#fcfaf8] text-sm font-medium leading-normal pb-2">First Name</p>
