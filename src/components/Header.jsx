@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import logo from '../assets/AHC_Logo.svg?url';
+import logo from '../assets/AHC_Logo.png';
 
 function Header({ currentPage = 'home', onNavigate, onProductSelect, cartCount = 0, wishlistCount = 0 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
