@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import logo from '../assets/AHC_Logo.svg?url';
 
 function Header({ currentPage = 'home', onNavigate, onProductSelect, cartCount = 0, wishlistCount = 0 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -74,7 +75,7 @@ function Header({ currentPage = 'home', onNavigate, onProductSelect, cartCount =
             onClick={() => handleNavClick('home')}
           >
             <img 
-              src="/AHC_Logo.svg" 
+              src={logo} 
               alt="Araku Hill Coffee" 
               className="h-10 md:h-12 w-auto"
             />
