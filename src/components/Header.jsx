@@ -210,6 +210,73 @@ function Header({ currentPage = 'home', onNavigate, onProductSelect, cartCount =
       {/* Mobile Menu - Mobile-first with better touch targets */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-[#e5e0db] bg-background-light">
+          <div className="px-4 py-3">
+            {/* Mobile Search */}
+            <div className="mb-3" ref={searchRef}>
+              <div className="flex items-center bg-white rounded-lg px-3 py-2.5 gap-2 border border-[#e5e0db]">
+                <span className="material-symbols-outlined text-[#9a734c] text-[18px]">search</span>
+                <input 
+                  className="bg-transparent border-none focus:ring-0 text-sm placeholder:text-[#9a734c] w-full outline-none" 
+                  placeholder="Search our blends..." 
+                  type="text"
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  onKeyPress={handleSearchSubmit}
+                  onFocus={() => searchQuery.trim() && setShowSearchResults(true)}
+                />
+              </div>
+              
+              {/* Search Results Overlay for Mobile */}
+              {showSearchResults && filteredProducts.length > 0 && (
+                <div className="mt-2 bg-white rounded-lg shadow-xl border border-[#e5e0db] max-h-[300px] overflow-y-auto">
+                  <div className="p-2">
+                    {filteredProducts.map((product, index) => (
+                      <button
+                        key={index}
+                        onClick={() => {
+                          if (onProductSelect) {
+                            onProductSelect(product);
+                          }
+                          handleNavClick('product-detail');
+                          setSearchQuery('');
+                        }}
+                        className="w-full flex items-center gap-3 p-2 hover:bg-[#f2ebd1] rounded-lg transition-colors text-left"
+                      >
+                        <div 
+                          className="w-12 h-12 rounded-md bg-cover bg-center flex-shrink-0"
+                          style={{ backgroundImage: `url("${product.image}")` }}
+                        />
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-sm font-bold text-[#1b140d] truncate">{product.title}</h4>
+                          <p className="text-xs text-[#9a734c]">{product.subtitle}</p>
+                        </div>
+                        <span className="text-sm font-bold text-primary">₹{product.price}</span>
+                      </button>
+                    ))}
+                  </div>
+                  <div className="border-t border-[#e5e0db] p-2">
+                    <button
+                      onClick={() => {
+                        setSearchQuery('');
+                        setShowSearchResults(false);
+                        handleNavClick('shop');
+                      }}
+                      className="w-full text-center text-sm text-primary font-semibold py-2 hover:bg-[#f2ebd1] rounded-lg transition-colors"
+                    >
+                      View all results in Shop →
+                    </button>
+                  </div>
+                </div>
+              )}
+              
+              {/* No Results Message for Mobile */}
+              {showSearchResults && searchQuery.trim() && filteredProducts.length === 0 && (
+                <div className="mt-2 bg-white rounded-lg shadow-xl border border-[#e5e0db] p-4">
+                  <p className="text-sm text-[#9a734c] text-center">No products found</p>
+                </div>
+              )}
+            </div>
+          </div>
           <nav className="px-4 py-3 space-y-1">
             <button 
               onClick={() => handleNavClick('home')} 
