@@ -5,7 +5,7 @@ function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 mb-8 sm:mb-12">
           <div className="space-y-4 sm:col-span-2 lg:col-span-1">
             <img 
-              src="/src/assets/AHC_Logo.svg" 
+              src="/src/assets/AHC_Logo.png" 
               alt="Araku Hill Coffee" 
               className="h-10 sm:h-12 w-auto"
             />
