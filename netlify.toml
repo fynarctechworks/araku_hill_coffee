@@ -2,6 +2,7 @@
   publish = "dist"
   command = "npm run build"
 
+# SPA routing configuration
 [[redirects]]
   from = "/*"
   to = "/index.html"
